@@ -2,10 +2,11 @@ import { IoPersonSharp } from "react-icons/io5";
 import { FaPhone } from "react-icons/fa6";
 import css from "./Contact.module.css";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsSlice";
+import { deleteContact } from "../../redux/contactsOps";
 
 const Contact = ({ id, number, name }) => {
   const dispatch = useDispatch();
+  const onDelete = () => dispatch(deleteContact(id));
   return (
     <div className={css.container}>
       <div className={css.contactNameNumber}>
@@ -22,11 +23,7 @@ const Contact = ({ id, number, name }) => {
           <span className={css.textariae}>{number}</span>
         </p>
       </div>
-      <button
-        className={css.contactBtn}
-        type="button"
-        onClick={() => dispatch(deleteContact(id))}
-      >
+      <button className={css.contactBtn} type="button" onClick={onDelete}>
         Delete
       </button>
     </div>

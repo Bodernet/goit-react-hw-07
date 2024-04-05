@@ -1,27 +1,27 @@
 import Contact from "../Contact/Contact.jsx";
 import css from "./ContactList.module.css";
-import { selectContacts } from "../../redux/contactsSlice.js";
-import { selectNameFilter } from "../../redux/filtersSlice.js";
+import {
+  selectError,
+  selectFilteredContacts,
+  selectIsLoading,
+} from "../../redux/contactsSlice.js";
 import { useSelector } from "react-redux";
+import Loader from "../Loader/Loader.jsx";
+import MessageError from "../MessageError/MessageError.jsx";
 
 const ContactList = () => {
-  const contacts = useSelector(selectContacts);
-  const nameFilter = useSelector(selectNameFilter);
-
-  const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(nameFilter.toLowerCase())
-  );
+  const contacts = useSelector(selectFilteredContacts);
+  const isError = useSelector(selectError);
+  const isLoading = useSelector(selectIsLoading);
 
   return (
     <div>
+      {isError && <MessageError />}
+      {isLoading && <Loader />}
       <ul className={css.cardList}>
-        {filteredContacts.map((contact) => (
+        {contacts.map((contact) => (
           <li className={css.cardItem} key={contact.id}>
-            <Contact
-              name={contact.name}
-              number={contact.number}
-              id={contact.id}
-            />
+            <Contact {...contact} />
           </li>
         ))}
       </ul>
