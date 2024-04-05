@@ -1,0 +1,26 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  row-gap: 15px;
+  margin-bottom: 40px;
+  max-width: 250px;
+  margin-left: 40px;
+}
+input {
+  font-size: 1em;
+  font-weight: 400;
+  font-family: inherit;
+  line-height: 1;
+  padding: 5px;
+  margin-bottom: 8px;
+  border: 1px solid;
+  border-radius: 7px;
+  min-width: 240px;
+}
+
+input:hover {
+  border: 1px solid blue;
+}
